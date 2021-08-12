@@ -1,27 +1,25 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View } from "react-native";
 
-import React from 'react';
+import ExpenseItem from "./ExpenseItem";
+import ExpensesForm from "./ExpensesForm";
+import ExpensesList from "./ExpensesList";
+import React from "react";
 
-function Expenses() {
-    return (
-        <View styles={styles.expenses}>
-            <Text>Expenses</Text>
-        </View>
-    )
-
-
-   
-
+function Expenses(props) {
+  return (
+    <View style={styles.expenses}>
+        <ExpensesForm/>
+      <ExpensesList
+        items={props.items}
+        date={props.date}
+        amount={props.amount}
+      />
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
-    expenses:{
-     padding: 50,
-     backgroundColor: '#dedede',
-     margin: 2,
-     width: 50,
-     maxWidth: '95%',
- }}
- );
+  expenses: {},
+});
 
 export default Expenses;
