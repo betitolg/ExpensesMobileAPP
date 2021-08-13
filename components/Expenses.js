@@ -1,14 +1,12 @@
 import { StyleSheet, Text, View } from "react-native";
 
-import ExpenseItem from "./ExpenseItem";
-import ExpensesForm from "./ExpensesForm";
 import ExpensesList from "./ExpensesList";
 import React from "react";
 
 function Expenses(props) {
   return (
     <View style={styles.expenses}>
-        <ExpensesForm/>
+       
       <ExpensesList
         items={props.items}
         date={props.date}
@@ -19,7 +17,9 @@ function Expenses(props) {
 }
 
 const styles = StyleSheet.create({
-  expenses: {},
+  expenses: {
+    
+  },
 });
 
 export default Expenses;

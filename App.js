@@ -1,10 +1,11 @@
-import { StyleSheet, Text, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 import Expenses from "./components/Expenses";
-import React from "react";
+import ExpensesForm from "./components/ExpensesForm";
+import { Header } from "react-native-elements/dist/header/Header";
 
 const App = () => {
-
   const expenses_demo = [
     {
       id: "e1",
@@ -21,13 +22,13 @@ const App = () => {
     },
     {
       id: "e4",
-      title: "New Desk (Wooden)",
+      title: "Vino",
       amount: 450,
       date: new Date(2021, 5, 12),
     },
     {
       id: "e5",
-      title: "New Desk (Wooden)",
+      title: "Gaseosa",
       amount: 450,
       date: new Date(2021, 5, 12),
     },
@@ -57,16 +58,56 @@ const App = () => {
     },
     {
       id: "e10",
-      title: "New Desk (Wooden)",
+      title: "Bodega",
       amount: 450,
       date: new Date(2021, 5, 12),
-    }
+    },
   ];
+  const [itemList, setItemList] = useState([]);
+
+  useEffect(() => {
+   setItemList(expenses_demo);
+  }, [])
+
+  
+
+
+
+  const [formVisible, setFormVisible] = useState(false);
+
+  const closeAddForm = () => {
+    setFormVisible(false);
+  };
+
+  const addItem=(item)=>{
+    setItemList([
+      ...itemList,
+      {
+        id: Math.random().toString(),
+        title: item,
+        amount: 94.12,
+        date: new Date(2020, 7, 14),
+      },
+    ]);
+
+
+  }
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Expenses App</Text>
-      <Expenses items={expenses_demo}/>
+      <Text style={styles.title}>Lista de Gastos</Text>
+
+      {!formVisible && (
+        <TouchableOpacity
+          style={styles.buttonAdd}
+          onPress={() => setFormVisible(true)}
+        >
+          <Text style={styles.buttonTextColor}>Registrar Gasto</Text>
+        </TouchableOpacity>
+      )}
+
+      {formVisible && <ExpensesForm closeAction={closeAddForm} addAction={addItem}/>}
+      <Expenses items={itemList} />
     </View>
   );
 };
@@ -76,6 +117,21 @@ const styles = StyleSheet.create({
     paddingTop: 50,
     paddingLeft: 25,
     backgroundColor: "#eaeaea",
+  },
+  buttonAdd: {
+    backgroundColor: "#3b52c4",
+    width: "92%",
+    marginTop: 20,
+    borderRadius: 20,
+    textAlign: "center",
+    flexDirection: "row",
+    justifyContent: "center",
+    height: 30,
+    borderWidth: 3,
+  },
+  buttonTextColor: {
+    color: "#fff",
+    fontWeight: "500",
   },
   title: {
     marginTop: 16,
@@ -88,8 +144,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 30,
     fontWeight: "bold",
-    width:'92%'
-  }
+    width: "92%",
+  },
 });
 
 export default App;
