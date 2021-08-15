@@ -1,28 +1,23 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-import { Card } from "react-native-elements";
 import ExpenseDate from "./ExpenseDate";
 import React from "react";
 
 const ExpenseItem = (props) => {
-
-
-  
   return (
     <View style={styles.expenseItem}>
-
       <View style={styles.expenseDataContainer}>
-      <Text style={styles.expenseitem__description}>{props.title}</Text>
-      <ExpenseDate date={props.date} />
-      <Text style={styles.amount}>$ {props.amount}</Text>
+        <Text style={styles.expenseitem__description}>{props.title}</Text>
+        <ExpenseDate date={props.date} />
+        <Text style={styles.amount}>$ {props.amount}</Text>
       </View>
       <View style={styles.buttonContainer}>
-      <TouchableOpacity style={styles.buttonDetail}>
-        <Text>Ver Detalle</Text>
-      </TouchableOpacity>
-      <TouchableOpacity  style={styles.butonDelete}>
-        <Text>Eliminar</Text>
-      </TouchableOpacity>
+        <TouchableOpacity style={styles.buttonDetail}>
+          <Text style={styles.textDetail}> Ver Detalle</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.butonDelete}>
+          <Text style={styles.textDetail}>Eliminar</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -45,33 +40,35 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     flexDirection: "column",
   },
-  expenseDataContainer:{
-flexDirection:'row',
-justifyContent: "space-between",
+  expenseDataContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
-  buttonDetail:{
-    backgroundColor:'#b2d1b2',
-    borderRadius:5,
-    textAlign:'center'
-
+  buttonDetail: {
+    backgroundColor: "#b2d1b2",
+    borderRadius: 5,
+    textAlign: "center",
+    height:26,
+    width:100
   },
-  butonDelete:{
-    backgroundColor:'#db8190',
-    borderRadius:5,
-    textAlign:'center'
-    
+  textDetail: {
+    textAlign: "center",
   },
-  buttonContainer:{
-alignContent:'center',
-flexDirection:'row',
-justifyContent:'space-around'
-
-  }
-  ,
+  butonDelete: {
+    backgroundColor: "#db8190",
+    borderRadius: 5,
+    textAlign: "center",
+    height:26,
+    width:100
+  },
+  buttonContainer: {
+    alignContent: "center",
+    flexDirection: "row",
+    justifyContent: "space-around",
+  },
   expenseitem__description: {
     textAlign: "center",
-    marginLeft:10
- 
+    marginLeft: 10,
   },
   amount: {
     borderColor: "#000",
@@ -81,8 +78,8 @@ justifyContent:'space-around'
     color: "#000",
     width: "20%",
     height: "100%",
-    textAlign:'center',
-    marginRight:10
+    textAlign: "center",
+    marginRight: 10,
   },
 });
 

@@ -1,23 +1,25 @@
 import { Button, StyleSheet, TextInput, View } from "react-native";
-
-import React from "react";
+import React,{useState} from "react";
 
 const ExpensesForm = (props) => {
-
+  const [textInput, setTextInput] = useState("");
 
   const closeForm = () => {
     props.closeAction();
   };
 
-const addItem=()=>{
-
-props.addAction();
-
-}
+  const addItem = ()  => {
+    props.addAction(textInput);
+  };
+  const onChangeTextHandler = (evt) => setTextInput(evt);
 
   return (
     <View style={styles.expenseForm}>
-      <TextInput style={styles.input} value="" />
+      <TextInput
+        style={styles.input}
+        value={textInput}
+        onChangeText={onChangeTextHandler}
+      />
       <TextInput style={styles.input} value="" />
       <TextInput style={styles.input} value="" />
       <View style={styles.buttonContainer}>
@@ -52,6 +54,7 @@ const styles = StyleSheet.create({
     margin: 12,
     borderWidth: 1,
     padding: 10,
+    borderRadius:24
   },
 });
 
