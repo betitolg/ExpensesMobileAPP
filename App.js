@@ -3,7 +3,6 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 import Expenses from "./components/Expenses";
 import ExpensesForm from "./components/ExpensesForm";
-import { Header } from "react-native-elements/dist/header/Header";
 
 const App = () => {
   const [itemSelected, setItemSelected] = useState({});
@@ -55,21 +54,21 @@ console.log("eliminando " + id)
       ...itemList,
      item,
     ]);
-
-
-  }
+  };
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Lista de Gastos</Text>
 
       {!formVisible && (
+        <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={styles.buttonAdd}
           onPress={() => setFormVisible(true)}
         >
           <Text style={styles.buttonTextColor}>Registrar Gasto</Text>
         </TouchableOpacity>
+        </View>
       )}
 
       {formVisible && <ExpensesForm closeAction={closeAddForm} addAction={addItem}/>}
@@ -77,6 +76,7 @@ console.log("eliminando " + id)
     </View>
   );
 };
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -84,29 +84,35 @@ const styles = StyleSheet.create({
     paddingLeft: 25,
     backgroundColor: "#eaeaea",
   },
+  buttonContainer:{
+    flexDirection:"row",
+    justifyContent:"center"
+  },
   buttonAdd: {
-    backgroundColor: "#3b52c4",
-    width: "92%",
+    backgroundColor: "#F2B138",
+    width: "40%",
     marginTop: 20,
     borderRadius: 20,
     textAlign: "center",
     flexDirection: "row",
+    
     justifyContent: "center",
     height: 30,
     borderWidth: 3,
+    color:'#353D40'
   },
   buttonTextColor: {
-    color: "#fff",
+    color: "#353D40",
     fontWeight: "500",
   },
   title: {
     marginTop: 16,
     paddingVertical: 8,
     borderWidth: 4,
-    borderColor: "#20232a",
+    borderColor: "#353D40",
     borderRadius: 6,
-    backgroundColor: "#61dafb",
-    color: "#20232a",
+    backgroundColor: "#003F63",
+    color: "#D9D9D9",
     textAlign: "center",
     fontSize: 30,
     fontWeight: "bold",
