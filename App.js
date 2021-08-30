@@ -3,6 +3,9 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 import Expenses from "./components/Expenses";
 import ExpensesForm from "./components/ExpensesForm";
+import { NavigationContainer } from '@react-navigation/native';
+import { Stack } from "native-base";
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 const App = () => {
   const expenses_demo = [
@@ -87,7 +90,14 @@ const App = () => {
   };
 
   return (
-    <View style={styles.container}>
+
+    <NavigationContainer>
+<Stack.NavigationContainer>
+
+
+      <Stack.Screen name="Home" component={Expenses} />
+
+      <View style={styles.container}>
       <Text style={styles.title}>Lista de Gastos</Text>
 
       {!formVisible && (
@@ -106,6 +116,10 @@ const App = () => {
       )}
       <Expenses items={itemList} />
     </View>
+</Stack.NavigationContainer>
+
+    </NavigationContainer>
+    
   );
 };
 
