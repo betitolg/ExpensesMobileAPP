@@ -8,6 +8,7 @@ import { Stack } from "native-base";
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 const App = () => {
+  const [itemSelected, setItemSelected] = useState({});
   const expenses_demo = [
     {
       id: "e1",
@@ -27,65 +28,34 @@ const App = () => {
       title: "Vino",
       amount: 450,
       date: new Date(2021, 5, 12),
-    },
-    {
-      id: "e5",
-      title: "Gaseosa",
-      amount: 450,
-      date: new Date(2021, 5, 12),
-    },
-    {
-      id: "e6",
-      title: "New Desk (Wooden)",
-      amount: 450,
-      date: new Date(2021, 5, 12),
-    },
-    {
-      id: "e7",
-      title: "New Desk (Wooden)",
-      amount: 450,
-      date: new Date(2021, 5, 12),
-    },
-    {
-      id: "e8",
-      title: "New Desk (Wooden)",
-      amount: 450,
-      date: new Date(2021, 5, 12),
-    },
-    {
-      id: "e9",
-      title: "New Desk (Wooden)",
-      amount: 450,
-      date: new Date(2021, 5, 12),
-    },
-    {
-      id: "e10",
-      title: "Bodega",
-      amount: 450,
-      date: new Date(2021, 5, 12),
-    },
+    }
   ];
   const [itemList, setItemList] = useState([]);
 
   useEffect(() => {
-    setItemList(expenses_demo);
-  },[]);
+   setItemList(expenses_demo);
+  }, [])
 
+  
   const [formVisible, setFormVisible] = useState(false);
 
   const closeAddForm = () => {
     setFormVisible(false);
   };
 
-  const addItem = (item) => {
+const OnDeleteItem=(id)=>{
+console.log("eliminando " + id)
+  setItemSelected(itemList.find((item) => item.id === id));
+
+  setItemList(itemList.filter((item) => item.id !== itemSelected.id));
+
+  
+}
+
+  const addItem=(item)=>{
     setItemList([
       ...itemList,
-      {
-        id: Math.random().toString(),
-        title: item,
-        amount: 94.12,
-        date: new Date(2020, 7, 14),
-      },
+     item,
     ]);
   };
 
@@ -111,10 +81,8 @@ const App = () => {
         </View>
       )}
 
-      {formVisible && (
-        <ExpensesForm closeAction={closeAddForm} addAction={addItem} />
-      )}
-      <Expenses items={itemList} />
+      {formVisible && <ExpensesForm closeAction={closeAddForm} addAction={addItem}/>}
+      <Expenses items={itemList}  OnDeleteItem={OnDeleteItem}/>
     </View>
 </Stack.NavigationContainer>
 

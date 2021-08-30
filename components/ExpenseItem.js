@@ -4,6 +4,10 @@ import ExpenseDate from "./ExpenseDate";
 import React from "react";
 
 const ExpenseItem = (props) => {
+  const deleteItem = (id) => {
+    props.OnDeleteItem(id);
+  };
+
   return (
     <View style={styles.expenseItem}>
       <View style={styles.expenseDataContainer}>
@@ -13,10 +17,13 @@ const ExpenseItem = (props) => {
       </View>
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.buttonDetail}>
-          <Text style={styles.textDetail}> Ver Detalle</Text>
+          <Text>Ver Detalle</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.butonDelete}>
-          <Text style={styles.textDetail}>Eliminar</Text>
+        <TouchableOpacity
+          style={styles.butonDelete}
+          onPress={() => deleteItem(props.id)}
+        >
+          <Text>Eliminar</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -48,18 +55,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#b2d1b2",
     borderRadius: 5,
     textAlign: "center",
-    height:26,
-    width:100
-  },
-  textDetail: {
-    textAlign: "center",
   },
   butonDelete: {
     backgroundColor: "#db8190",
     borderRadius: 5,
     textAlign: "center",
-    height:26,
-    width:100
   },
   buttonContainer: {
     alignContent: "center",
