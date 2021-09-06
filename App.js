@@ -5,7 +5,8 @@ import Expenses from "./components/Expenses";
 import ExpensesForm from "./components/ExpensesForm";
 import { NavigationContainer } from '@react-navigation/native';
 import { Stack } from "native-base";
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
 
 const App = () => {
   const [itemSelected, setItemSelected] = useState({});
@@ -76,7 +77,7 @@ console.log("eliminando " + id)
           style={styles.buttonAdd}
           onPress={() => setFormVisible(true)}
         >
-          <Text style={styles.buttonTextColor}>Registrar Gasto</Text>
+          <Text style={styles.buttonTextColor}>Add Expense </Text>
         </TouchableOpacity>
         </View>
       )}

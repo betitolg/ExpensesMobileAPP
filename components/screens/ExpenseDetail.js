@@ -5,7 +5,7 @@ import React from 'react'
 const ExpenseDetail = (props) => {
     return (
         <View>
-            <Text></Text>
+            <Text>Detalle de un Gasto</Text>
         </View>
     )
 }
