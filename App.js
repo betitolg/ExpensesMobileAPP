@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
+import BreadNavigator from "./navigation/BreadNavigation";
 import Expenses from "./components/Expenses";
 import ExpensesForm from "./components/ExpensesForm";
 import { NavigationContainer } from '@react-navigation/native';
 import { Stack } from "native-base";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
 
 const App = () => {
   const [itemSelected, setItemSelected] = useState({});
@@ -62,11 +62,9 @@ console.log("eliminando " + id)
 
   return (
 
-    <NavigationContainer>
-<Stack.NavigationContainer>
+ 
 
-
-      <Stack.Screen name="Home" component={Expenses} />
+   <BreadNavigator>
 
       <View style={styles.container}>
       <Text style={styles.title}>Lista de Gastos</Text>
@@ -84,10 +82,9 @@ console.log("eliminando " + id)
 
       {formVisible && <ExpensesForm closeAction={closeAddForm} addAction={addItem}/>}
       <Expenses items={itemList}  OnDeleteItem={OnDeleteItem}/>
-    </View>
-</Stack.NavigationContainer>
-
-    </NavigationContainer>
+</View>
+      </BreadNavigator>
+    
     
   );
 };
